@@ -1,0 +1,26 @@
+// I'm Summer - Summer (major/happy version)
+setcpm(47) // 94 bpm
+
+// bright major chord progression (G# major: I - IV - V - I)
+$: note("<[g#4,c5,d#5] [c#4,f4,g#4] [d#4,g4,a#4] [g#4,c5,d#5]>")
+  .s("square")
+  .lpf(2000).gain(0.2)
+  .room(0.4)
+
+// bouncy bass
+$: note("<g#2 c#3 d#3 g#2>")
+  .s("sawtooth").lpf(500).gain(0.5)
+  .decay(0.05).sustain(0.3)
+
+// bright sparkly melody
+$: note("g#5 ~ d#5 ~ c5 ~ d#5 ~ g#5 ~ c5 ~ d#5 ~ ~ ~")
+  .s("triangle").gain(0.18)
+  .delay(0.3).delaytime(0.2).delayfeedback(0.4)
+  .room(0.5).lpf(4000)
+
+// peppier drums
+$: s("bd ~ bd ~ bd ~ bd ~").gain(0.6)
+
+$: s("~ ~ ~ ~ sd ~ ~ ~").gain(0.45).room(0.2)
+
+$: s("hh*16").gain(0.2).lpf(7000)

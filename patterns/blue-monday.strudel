@@ -1,0 +1,24 @@
+// Blue Monday - New Order
+setcpm(32.5) // ~130 bpm
+
+// the iconic bass line
+$: note("f2!4 c2!4 eb2!2 e2!2 f2!4")
+  .s("sawtooth")
+  .lpf(400).gain(0.6)
+  .decay(0.1).sustain(0.4)
+  .slow(4)
+
+// driving kick
+$: s("bd bd bd bd").gain(0.8)
+
+// 16th note hats
+$: s("hh*16").gain(0.25).lpf(6000)
+
+// snare hits
+$: s("~ sd ~ sd").gain(0.6)
+
+// synth stabs
+$: note("<[f4,ab4,c5] ~ ~ ~> <~ ~ [eb4,g4,bb4] ~>")
+  .s("square").lpf(1500).gain(0.15)
+  .decay(0.2).sustain(0.1)
+  .room(0.3)
