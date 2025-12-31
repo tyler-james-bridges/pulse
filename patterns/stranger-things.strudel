@@ -1,0 +1,19 @@
+setcpm(70)
+
+// dark synth pad - slow breathing texture
+$: n("0 2 4 6 7 6 4 2").scale("c3 minor")
+  .s("supersaw").distort(0.7)
+  .superimpose(x => x.detune("0.5"))
+  .lpf(perlin.slow(2).range(200, 1200))
+  .gain(0.3).room(0.4)
+
+// bass foundation - deep analog warmth
+$: n("<0 -3 0 -1>").scale("c2 minor")
+  .s("sawtooth").lpf(300).gain(0.5)
+  .slow(4)
+
+// atmospheric arpeggios - floating above
+$: n("<0 2 4 7>").scale("c4 minor")
+  .s("triangle").gain(0.25)
+  .delay(0.3).delaytime(0.25).delayfeedback(0.4)
+  .lpf(800).room(0.6)
