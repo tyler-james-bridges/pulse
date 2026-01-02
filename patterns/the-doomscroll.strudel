@@ -1,0 +1,44 @@
+// The Doomscroll - What the algorithm sounds like
+// An endless loop that never resolves, always promises, never delivers
+setcpm(35) // 140 bpm - anxious scrolling energy
+
+// the feed - chord progression that never comes home
+// (suspended chords, always implying resolution that won't come)
+$: note("<e4 a4 b4> <f#4 a4 c#5> <g4 b4 d5> <f#4 a4 c#5>")
+  .s("supersaw").detune(0.2)
+  .lpf(perlin.slow(6).range(600, 2200)) // "personalized" but it's just noise
+  .gain(0.22).room(0.5)
+
+// the scroll - endless 16ths, content flying by
+$: s("hh*16")
+  .gain(perlin.range(0.08, 0.18))
+  .lpf(perlin.slow(4).range(3000, 7000))
+  .pan(perlin.range(0.3, 0.7))
+
+// the heartbeat underneath - subtle anxiety
+$: s("bd:3 ~ ~ bd:3 ~ ~ bd:3 ~ ")
+  .gain(0.45).lpf(200)
+
+// dopamine hits - random rewards, just enough to keep you here
+$: s("~ ~ ~ ~ ~ blip ~ ~ ~ ~ ~ ~ blip ~ ~ ~")
+  .speed(2).gain(0.15).room(0.7)
+  .delay(0.4).delaytime(0.166).delayfeedback(0.3)
+  .rarely(x => x.speed(3).gain(0.25)) // rare big hit
+
+// content fragments - melodic interrupts that seem meaningful
+$: note("~ ~ e5 ~ ~ ~ ~ ~ ~ ~ b4 ~ ~ ~ ~ ~")
+  .s("triangle").gain(0.12)
+  .lpf(2500).room(0.4)
+  .sometimes(x => x.note("c#5"))
+
+// the build that resets - always about to drop, never does
+$: note("<b2 b2 c#3 c#3 d3 d3 e3 d3>")
+  .s("sawtooth").lpf(350).gain(0.35)
+  .decay(0.1).sustain(0.6)
+  .slow(2) // resets every 2 cycles, you stay for "one more"
+
+// notification ghost - that sound you thought you heard
+$: s("~ ~ ~ ~ ~ ~ ~ crow")
+  .speed(1.5).gain(0.06).room(0.9)
+  .delay(0.5).delaytime(0.25).delayfeedback(0.5)
+  .slow(4) // rare enough to keep you alert
