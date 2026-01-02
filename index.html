@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pulse - Live Coding Music</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap');
-
     * {
       margin: 0;
       padding: 0;
@@ -14,189 +12,180 @@
     }
 
     body {
-      font-family: 'Space Grotesk', system-ui, sans-serif;
-      background: #f4f1eb;
-      color: #1a1a1a;
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      background: #0a0a0f;
+      color: #e0e0e0;
       line-height: 1.6;
       min-height: 100vh;
     }
 
     .container {
-      max-width: 720px;
+      max-width: 900px;
       margin: 0 auto;
       padding: 2rem;
     }
 
     header {
-      padding: 5rem 0 3rem;
-      border-bottom: 2px solid #1a1a1a;
+      text-align: center;
+      padding: 4rem 0 3rem;
+      border-bottom: 1px solid #222;
       margin-bottom: 3rem;
     }
 
     h1 {
-      font-size: 4.5rem;
-      font-weight: 600;
-      letter-spacing: -0.03em;
-      line-height: 1;
-      margin-bottom: 1rem;
+      font-size: 3rem;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .tagline {
-      font-size: 1.1rem;
       color: #666;
-      font-weight: 300;
-    }
-
-    .intro {
-      background: #1a1a1a;
-      color: #f4f1eb;
-      padding: 1.25rem 1.5rem;
-      margin-bottom: 3rem;
-      font-size: 0.95rem;
-    }
-
-    .intro a {
-      color: #fff;
-      text-decoration: underline;
-      text-underline-offset: 2px;
-    }
-
-    .intro strong {
-      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
     }
 
     .series-header {
-      margin: 4rem 0 1.5rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid #ccc;
+      margin: 3rem 0 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #222;
     }
 
     .series-header h2 {
-      font-size: 0.85rem;
-      font-weight: 600;
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #888;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: #1a1a1a;
     }
 
     .series-header p {
-      color: #888;
-      margin-top: 0.25rem;
+      color: #555;
+      margin-top: 0.5rem;
       font-size: 0.9rem;
-      font-weight: 300;
     }
 
     .pattern-card {
-      border-bottom: 1px solid #ddd;
-      padding: 1.75rem 0;
+      background: #12121a;
+      border: 1px solid #222;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      transition: border-color 0.2s, transform 0.2s;
     }
 
-    .pattern-card:last-of-type {
-      border-bottom: none;
+    .pattern-card:hover {
+      border-color: #444;
+      transform: translateY(-2px);
     }
 
     .pattern-header {
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 0.75rem;
-      flex-wrap: wrap;
-      gap: 0.5rem;
+      align-items: flex-start;
+      margin-bottom: 1rem;
     }
 
     .pattern-title {
-      font-size: 1.5rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #fff;
     }
 
     .pattern-meta {
       display: flex;
       gap: 1rem;
       font-size: 0.8rem;
-      color: #888;
-      font-weight: 400;
+      color: #666;
+    }
+
+    .pattern-meta span {
+      background: #1a1a24;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
     }
 
     .pattern-description {
-      color: #555;
+      color: #888;
       font-size: 0.95rem;
-      margin-bottom: 1rem;
-      font-weight: 300;
-      max-width: 600px;
+      margin-bottom: 1.2rem;
     }
 
     .pattern-tags {
       display: flex;
-      gap: 0.4rem;
+      gap: 0.5rem;
       flex-wrap: wrap;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.2rem;
     }
 
     .tag {
-      font-size: 0.7rem;
-      color: #1a1a1a;
-      background: transparent;
-      border: 1px solid #bbb;
+      font-size: 0.75rem;
+      color: #667eea;
+      background: rgba(102, 126, 234, 0.1);
       padding: 0.2rem 0.5rem;
-      text-transform: lowercase;
-      font-weight: 400;
+      border-radius: 3px;
     }
 
     .play-btn {
       display: inline-flex;
       align-items: center;
-      gap: 0.6rem;
-      background: #1a1a1a;
-      color: #f4f1eb;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
       text-decoration: none;
-      padding: 0.8rem 1.4rem;
-      font-size: 0.85rem;
-      font-weight: 400;
-      transition: background 0.15s;
-      letter-spacing: 0.02em;
+      padding: 0.7rem 1.5rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: opacity 0.2s, transform 0.2s;
     }
 
     .play-btn:hover {
-      background: #333;
+      opacity: 0.9;
+      transform: scale(1.02);
     }
 
     .play-icon {
-      font-size: 0.75rem;
+      font-size: 1.1rem;
     }
 
     footer {
       text-align: center;
-      padding: 4rem 0 3rem;
-      margin-top: 3rem;
-      border-top: 2px solid #1a1a1a;
+      padding: 3rem 0;
+      margin-top: 2rem;
+      border-top: 1px solid #222;
+      color: #444;
       font-size: 0.85rem;
-      color: #888;
     }
 
     footer a {
-      color: #1a1a1a;
+      color: #667eea;
       text-decoration: none;
-      border-bottom: 1px solid #ccc;
-      transition: border-color 0.15s;
     }
 
     footer a:hover {
-      border-color: #1a1a1a;
+      text-decoration: underline;
     }
 
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2.75rem;
-      }
+    .intro {
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+      border: 1px solid #2a2a3a;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
 
-      .container {
-        padding: 1.25rem;
-      }
+    .intro p {
+      color: #aaa;
+      font-size: 0.95rem;
+    }
 
-      header {
-        padding: 3rem 0 2rem;
-      }
+    .intro strong {
+      color: #fff;
     }
   </style>
 </head>
@@ -204,68 +193,71 @@
   <div class="container">
     <header>
       <h1>Pulse</h1>
+      <h1>PULSE</h1>
       <p class="tagline">Live coding music experiments</p>
     </header>
 
     <div class="intro">
-      Music as code. Built with <a href="https://strudel.cc" target="_blank">Strudel</a>.
-      Click <strong>Play</strong> to open a pattern, then <strong>Ctrl+Enter</strong> to start.
+      <p>
+        Music written in code using <a href="https://strudel.cc" target="_blank">Strudel</a>.
+        Click <strong>Play in Strudel</strong> to open any pattern, then hit <strong>Ctrl+Enter</strong> to start the music.
+      </p>
     </div>
 
     <!-- THE ALGORITHM SOUND SERIES -->
     <section class="series-header">
       <h2>The Algorithm Sound</h2>
-      <p>What does social media sound like?</p>
+      <p>What does social media sound like? A series exploring the music of the feed.</p>
     </section>
 
     <div class="pattern-card">
       <div class="pattern-header">
         <span class="pattern-title">The Doomscroll</span>
         <div class="pattern-meta">
-          <span>140 bpm</span>
-          <span>E suspended</span>
+          <span>140 BPM</span>
+          <span>E sus</span>
         </div>
       </div>
       <p class="pattern-description">
-        An endless loop that never resolves. Suspended chords that won't come home.
-        Dopamine pings at random intervals. A build that resets before the drop.
-        The sound of just one more scroll.
+        An endless loop that never resolves, always promises, never delivers.
+        Suspended chords that won't come home. Dopamine pings at random intervals.
+        A build that always resets before the drop. The musical equivalent of "just one more scroll."
       </p>
       <div class="pattern-tags">
         <span class="tag">supersaw</span>
-        <span class="tag">perlin</span>
+        <span class="tag">perlin modulation</span>
+        <span class="tag">ambient</span>
         <span class="tag">hypnotic</span>
       </div>
-      <a href="https://strudel.cc/#Ly8gVGhlIERvb21zY3JvbGwgLSBXaGF0IHRoZSBhbGdvcml0aG0gc291bmRzIGxpa2UKLy8gQW4gZW5kbGVzcyBsb29wIHRoYXQgbmV2ZXIgcmVzb2x2ZXMsIGFsd2F5cyBwcm9taXNlcywgbmV2ZXIgZGVsaXZlcnMKc2V0Y3BtKDM1KSAvLyAxNDAgYnBtIC0gYW54aW91cyBzY3JvbGxpbmcgZW5lcmd5CgovLyB0aGUgZmVlZCAtIGNob3JkIHByb2dyZXNzaW9uIHRoYXQgbmV2ZXIgY29tZXMgaG9tZQovLyAoc3VzcGVuZGVkIGNob3JkcywgYWx3YXlzIGltcGx5aW5nIHJlc29sdXRpb24gdGhhdCB3b24ndCBjb21lKQokOiBub3RlKCI8ZTQgYTQgYjQ-IDxmIzQgYTQgYyM1PiA8ZzQgYjQgZDU-IDxmIzQgYTQgYyM1PiIpCiAgLnMoInN1cGVyc2F3IikuZGV0dW5lKDAuMikKICAubHBmKHBlcmxpbi5zbG93KDYpLnJhbmdlKDYwMCwgMjIwMCkpIC8vICJwZXJzb25hbGl6ZWQiIGJ1dCBpdCdzIGp1c3Qgbm9pc2UKICAuZ2FpbigwLjIyKS5yb29tKDAuNSkKCi8vIHRoZSBzY3JvbGwgLSBlbmRsZXNzIDE2dGhzLCBjb250ZW50IGZseWluZyBieQokOiBzKCJoaCoxNiIpCiAgLmdhaW4ocGVybGluLnJhbmdlKDAuMDgsIDAuMTgpKQogIC5scGYocGVybGluLnNsb3coNCkucmFuZ2UoMzAwMCwgNzAwMCkpCiAgLnBhbihwZXJsaW4ucmFuZ2UoMC4zLCAwLjcpKQoKLy8gdGhlIGhlYXJ0YmVhdCB1bmRlcm5lYXRoIC0gc3VidGxlIGFueGlldHkKJDogcygiYmQ6MyB-IH4gYmQ6MyB-IH4gYmQ6MyB-ICIpCiAgLmdhaW4oMC40NSkubHBmKDIwMCkKCi8vIGRvcGFtaW5lIGhpdHMgLSByYW5kb20gcmV3YXJkcywganVzdCBlbm91Z2ggdG8ga2VlcCB5b3UgaGVyZQokOiBzKCJ-IH4gfiB-IH4gYmxpcCB-IH4gfiB-IH4gfiBibGlwIH4gfiB-IikKICAuc3BlZWQoMikuZ2FpbigwLjE1KS5yb29tKDAuNykKICAuZGVsYXkoMC40KS5kZWxheXRpbWUoMC4xNjYpLmRlbGF5ZmVlZGJhY2soMC4zKQogIC5yYXJlbHkoeCA9PiB4LnNwZWVkKDMpLmdhaW4oMC4yNSkpIC8vIHJhcmUgYmlnIGhpdAoKLy8gY29udGVudCBmcmFnbWVudHMgLSBtZWxvZGljIGludGVycnVwdHMgdGhhdCBzZWVtIG1lYW5pbmdmdWwKJDogbm90ZSgifiB-IGU1IH4gfiB-IH4gfiB+IH4gYjQgfiB-IH4gfiB-IikKICAucygidHJpYW5nbGUiKS5nYWluKDAuMTIpCiAgLmxwZigyNTAwKS5yb29tKDAuNCkKICAuc29tZXRpbWVzKHggPT4geC5ub3RlKCJjIzUiKSkKCi8vIHRoZSBidWlsZCB0aGF0IHJlc2V0cyAtIGFsd2F5cyBhYm91dCB0byBkcm9wLCBuZXZlciBkb2VzCiQ6IG5vdGUoIjxiMiBiMiBjIzMgYyMzIGQzIGQzIGUzIGQzPiIpCiAgLnMoInNhd3Rvb3RoIikubHBmKDM1MCkuZ2FpbigwLjM1KQogIC5kZWNheSgwLjEpLnN1c3RhaW4oMC42KQogIC5zbG93KDIpIC8vIHJlc2V0cyBldmVyeSAyIGN5Y2xlcywgeW91IHN0YXkgZm9yICJvbmUgbW9yZSIKCi8vIG5vdGlmaWNhdGlvbiBnaG9zdCAtIHRoYXQgc291bmQgeW91IHRob3VnaHQgeW91IGhlYXJkCiQ6IHMoIn4gfiB+IH4gfiB-IH4gY3JvdyIpCiAgLnNwZWVkKDEuNSkuZ2FpbigwLjA2KS5yb29tKDAuOSkKICAuZGVsYXkoMC41KS5kZWxheXRpbWUoMC4yNSkuZGVsYXlmZWVkYmFjaygwLjUpCiAgLnNsb3coNCkgLy8gcmFyZSBlbm91Z2ggdG8ga2VlcCB5b3UgYWxlcnQ" class="play-btn" target="_blank">
-        <span class="play-icon">&#9654;</span> Play
+      <a href="https://strudel.cc/#Ly8gVGhlIERvb21zY3JvbGwgLSBXaGF0IHRoZSBhbGdvcml0aG0gc291bmRzIGxpa2UKLy8gQW4gZW5kbGVzcyBsb29wIHRoYXQgbmV2ZXIgcmVzb2x2ZXMsIGFsd2F5cyBwcm9taXNlcywgbmV2ZXIgZGVsaXZlcnMKc2V0Y3BtKDM1KSAvLyAxNDAgYnBtIC0gYW54aW91cyBzY3JvbGxpbmcgZW5lcmd5CgovLyB0aGUgZmVlZCAtIGNob3JkIHByb2dyZXNzaW9uIHRoYXQgbmV2ZXIgY29tZXMgaG9tZQovLyAoc3VzcGVuZGVkIGNob3JkcywgYWx3YXlzIGltcGx5aW5nIHJlc29sdXRpb24gdGhhdCB3b24ndCBjb21lKQokOiBub3RlKCI8ZTQgYTQgYjQ-IDxmIzQgYTQgYyM1PiA8ZzQgYjQgZDU-IDxmIzQgYTQgYyM1PiIpCiAgLnMoInN1cGVyc2F3IikuZGV0dW5lKDAuMikKICAubHBmKHBlcmxpbi5zbG93KDYpLnJhbmdlKDYwMCwgMjIwMCkpIC8vICJwZXJzb25hbGl6ZWQiIGJ1dCBpdCdzIGp1c3Qgbm9pc2UKICAuZ2FpbigwLjIyKS5yb29tKDAuNSkKCi8vIHRoZSBzY3JvbGwgLSBlbmRsZXNzIDE2dGhzLCBjb250ZW50IGZseWluZyBieQokOiBzKCJoaCoxNiIpCiAgLmdhaW4ocGVybGluLnJhbmdlKDAuMDgsIDAuMTgpKQogIC5scGYocGVybGluLnNsb3coNCkucmFuZ2UoMzAwMCwgNzAwMCkpCiAgLnBhbihwZXJsaW4ucmFuZ2UoMC4zLCAwLjcpKQoKLy8gdGhlIGhlYXJ0YmVhdCB1bmRlcm5lYXRoIC0gc3VidGxlIGFueGlldHkKJDogcygiYmQ6MyB-IH4gYmQ6MyB-IH4gYmQ6MyB-ICIpCiAgLmdhaW4oMC40NSkubHBmKDIwMCkKCi8vIGRvcGFtaW5lIGhpdHMgLSByYW5kb20gcmV3YXJkcywganVzdCBlbm91Z2ggdG8ga2VlcCB5b3UgaGVyZQokOiBzKCJ-IH4gfiB-IH4gYmxpcCB-IH4gfiB-IH4gfiBibGlwIH4gfiB-IikKICAuc3BlZWQoMikuZ2FpbigwLjE1KS5yb29tKDAuNykKICAuZGVsYXkoMC40KS5kZWxheXRpbWUoMC4xNjYpLmRlbGF5ZmVlZGJhY2soMC4zKQogIC5yYXJlbHkoeCA9PiB4LnNwZWVkKDMpLmdhaW4oMC4yNSkpIC8vIHJhcmUgYmlnIGhpdAoKLy8gY29udGVudCBmcmFnbWVudHMgLSBtZWxvZGljIGludGVycnVwdHMgdGhhdCBzZWVtIG1lYW5pbmdmdWwKJDogbm90ZSgifiB-IGU1IH4gfiB-IH4gfiB-IH4gYjQgfiB-IH4gfiB-IikKICAucygidHJpYW5nbGUiKS5nYWluKDAuMTIpCiAgLmxwZigyNTAwKS5yb29tKDAuNCkKICAuc29tZXRpbWVzKHggPT4geC5ub3RlKCJjIzUiKSkKCi8vIHRoZSBidWlsZCB0aGF0IHJlc2V0cyAtIGFsd2F5cyBhYm91dCB0byBkcm9wLCBuZXZlciBkb2VzCiQ6IG5vdGUoIjxiMiBiMiBjIzMgYyMzIGQzIGQzIGUzIGQzPiIpCiAgLnMoInNhd3Rvb3RoIikubHBmKDM1MCkuZ2FpbigwLjM1KQogIC5kZWNheSgwLjEpLnN1c3RhaW4oMC42KQogIC5zbG93KDIpIC8vIHJlc2V0cyBldmVyeSAyIGN5Y2xlcywgeW91IHN0YXkgZm9yICJvbmUgbW9yZSIKCi8vIG5vdGlmaWNhdGlvbiBnaG9zdCAtIHRoYXQgc291bmQgeW91IHRob3VnaHQgeW91IGhlYXJkCiQ6IHMoIn4gfiB+IH4gfiB-IH4gY3JvdyIpCiAgLnNwZWVkKDEuNSkuZ2FpbigwLjA2KS5yb29tKDAuOSkKICAuZGVsYXkoMC41KS5kZWxheXRpbWUoMC4yNSkuZGVsYXlmZWVkYmFjaygwLjUpCiAgLnNsb3coNCkgLy8gcmFyZSBlbm91Z2ggdG8ga2VlcCB5b3UgYWxlcnQ" class="play-btn" target="_blank">
+        <span class="play-icon">▶</span> Play in Strudel
       </a>
     </div>
 
     <!-- COVERS & ORIGINALS -->
     <section class="series-header">
-      <h2>Covers &amp; Originals</h2>
-      <p>Classic tracks and original compositions</p>
+      <h2>Covers & Originals</h2>
+      <p>Classic tracks and original compositions.</p>
     </section>
 
     <div class="pattern-card">
       <div class="pattern-header">
         <span class="pattern-title">Blue Monday</span>
         <div class="pattern-meta">
-          <span>130 bpm</span>
+          <span>130 BPM</span>
           <span>F minor</span>
         </div>
       </div>
       <p class="pattern-description">
-        New Order's synth-pop classic. The relentless bass line, driving kick,
-        16th-note hats, and those stabbing chords.
+        New Order's iconic synth-pop track. The relentless bass line, driving kick, 16th-note hats, and those stabbing chords.
       </p>
       <div class="pattern-tags">
         <span class="tag">cover</span>
         <span class="tag">synth-pop</span>
-        <span class="tag">sawtooth</span>
+        <span class="tag">sawtooth bass</span>
       </div>
       <a href="https://strudel.cc/#Ly8gQmx1ZSBNb25kYXkgLSBOZXcgT3JkZXIKc2V0Y3BtKDMyLjUpIC8vIH4xMzAgYnBtCgovLyB0aGUgaWNvbmljIGJhc3MgbGluZQokOiBub3RlKCJmMiE0IGMyITQgZWIyITIgZTIhMiBmMiE0IikKICAucygic2F3dG9vdGgiKQogIC5scGYoNDAwKS5nYWluKDAuNikKICAuZGVjYXkoMC4xKS5zdXN0YWluKDAuNCkKICAuc2xvdyg0KQoKLy8gZHJpdmluZyBraWNrCiQ6IHMoImJkIGJkIGJkIGJkIikuZ2FpbigwLjgpCgovLyAxNnRoIG5vdGUgaGF0cwokOiBzKCJoaCoxNiIpLmdhaW4oMC4yNSkubHBmKDYwMDApCgovLyBzbmFyZSBoaXRzCiQ6IHMoIn4gc2QgfiBzZCIpLmdhaW4oMC42KQoKLy8gc3ludGggc3RhYnMKJDogbm90ZSgiPFtmNCxhYjQsYzVdIH4gfiB-PiA8fiB-IFtlYjQsZzQsYmI0XSB-PiIpCiAgLnMoInNxdWFyZSIpLmxwZigxNTAwKS5nYWluKDAuMTUpCiAgLmRlY2F5KDAuMikuc3VzdGFpbigwLjEpCiAgLnJvb20oMC4zKQ" class="play-btn" target="_blank">
-        <span class="play-icon">&#9654;</span> Play
+        <span class="play-icon">▶</span> Play in Strudel
       </a>
     </div>
 
@@ -273,21 +265,21 @@
       <div class="pattern-header">
         <span class="pattern-title">Stranger Things</span>
         <div class="pattern-meta">
-          <span>84 bpm</span>
+          <span>84 BPM</span>
           <span>C major</span>
         </div>
       </div>
       <p class="pattern-description">
-        The haunting synth theme. Layered supersaws with perlin noise modulation,
-        detuned pads, and that unmistakable atmosphere.
+        The haunting synth theme. Layered supersaws with perlin noise modulation, detuned pads, and that unmistakable atmosphere.
       </p>
       <div class="pattern-tags">
         <span class="tag">cover</span>
         <span class="tag">ambient</span>
         <span class="tag">supersaw</span>
+        <span class="tag">perlin</span>
       </div>
       <a href="https://strudel.cc/#c2V0Y3BtKDQyKQoKLy8gYW1iaWVudCBwYWQKJDogbigiMCAyIDQgNiA3IDYgNCAyIikuc2NhbGUoIjxjMyBtYWpvcj4vNCIpCiAgLnMoInN1cGVyc2F3IikuZGlzdG9ydCgwLjYpCiAgLmxwZihwZXJsaW4uc2xvdyg0KS5yYW5nZSgyMDAsIDE4MDApKQogIC5scGVudihwZXJsaW4uc2xvdyg1KS5yYW5nZSgxLCAzKSkKICAuZ2FpbigwLjMpLnJvb20oMC44KQoKLy8gZGV0dW5lZCBsYXllcgokOiBuKCIwIDIgNCA2IDcgNiA0IDIiKS5zY2FsZSgiPGMzIG1ham9yPi80IikKICAucygic3VwZXJzYXciKS5kZXR1bmUoLTAuOCkKICAubHBmKHBlcmxpbi5zbG93KDMpLnJhbmdlKDMwMCwgMTIwMCkpCiAgLmdhaW4oMC4yNSkucm9vbSgwLjcpCgovLyBiYXNzIGZvdW5kYXRpb24KJDogbigiPGMxIGcxPi84IikucygidHJpYW5nbGUiKQogIC5scGYoNDAwKS5nYWluKDAuNCkucm9vbSgwLjMpCgovLyB0ZXh0dXJlCiQ6ICI8YTEgZTI-LzE2Ii5zdHJ1Y3QoIip4NCIpLnMoInRyaWFuZ2xlIikKICAuY2xpcCgwLjkpLmxwZig4MDApLmdhaW4oMC4xNSk" class="play-btn" target="_blank">
-        <span class="play-icon">&#9654;</span> Play
+        <span class="play-icon">▶</span> Play in Strudel
       </a>
     </div>
 
@@ -295,28 +287,28 @@
       <div class="pattern-header">
         <span class="pattern-title">I'm Summer</span>
         <div class="pattern-meta">
-          <span>94 bpm</span>
+          <span>94 BPM</span>
           <span>G# major</span>
         </div>
       </div>
       <p class="pattern-description">
-        An original bright composition. Major chord progression, bouncy bass,
-        sparkly delayed melody, and upbeat drums.
+        An original bright, happy composition. Major chord progression, bouncy bass, sparkly delayed melody, and upbeat drums.
       </p>
       <div class="pattern-tags">
         <span class="tag">original</span>
         <span class="tag">pop</span>
+        <span class="tag">bright</span>
         <span class="tag">delay</span>
       </div>
-      <a href="https://strudel.cc/#Ly8gSSdtIFN1bW1lciAtIFN1bW1lciAobWFqb3IvaGFwcHkgdmVyc2lvbikKc2V0Y3BtKDQ3KSAvLyA5NCBicG0KCi8vIGJyaWdodCBtYWpvciBjaG9yZCBwcm9ncmVzc2lvbiAoRyMgbWFqb3I6IEkgLSBJViAtIFYgLSBJKQokOiBub3RlKCI8W2cjNCxjNSxkIzVdIFtjIzQsZjQsZyM0XSBbZCM0LGc0LGEjNF0gW2cjNCxjNSxkIzVdPiIpCiAgLnMoInNxdWFyZSIpCiAgLmxwZigyMDAwKS5nYWluKDAuMikKICAucm9vbSgwLjQpCgovLyBib3VuY3kgYmFzcwokOiBub3RlKCI8ZyMyIGMjMyBkIzMgZyMyPiIpCiAgLnMoInNhd3Rvb3RoIikubHBmKDUwMCkuZ2FpbigwLjUpCiAgLmRlY2F5KDAuMDUpLnN1c3RhaW4oMC4zKQoKLy8gYnJpZ2h0IHNwYXJrbHkgbWVsb2R5CiQ6IG5vdGUoImcjNSB-IGQjNSB-IGM1IH4gZCM1IH4gZyM1IH4gYzUgfiBkIzUgfiB-IH4iKQogIC5zKCJ0cmlhbmdsZSIpLmdhaW4oMC4xOCkKICAuZGVsYXkoMC4zKS5kZWxheXRpbWUoMC4yKS5kZWxheWZlZWRiYWNrKDAuNCkKICAucm9vbSgwLjUpLmxwZig0MDAwKQoKLy8gcGVwcGllciBkcnVtcwokOiBzKCJiZCB-IGJkIH4gYmQgfiBiZCB-IikuZ2FpbigwLjYpCgokOiBzKCJ+IH4gfiB-IHNkIH4gfiB-IikuZ2FpbigwLjQ1KS5yb29tKDAuMikKCiQ6IHMoImhoKjE2IikuZ2FpbigwLjIpLmxwZig3MDAwKQ" class="play-btn" target="_blank">
-        <span class="play-icon">&#9654;</span> Play
+      <a href="https://strudel.cc/#Ly8gSSdtIFN1bW1lciAtIFN1bW1lciAobWFqb3IvaGFwcHkgdmVyc2lvbikKc2V0Y3BtKDQ3KSAvLyA5NCBicG0KCi8vIGJyaWdodCBtYWpvciBjaG9yZCBwcm9ncmVzc2lvbiAoRyMgbWFqb3I6IEkgLSBJViAtIFYgLSBJKQokOiBub3RlKCI8W2cjNCxjNSxkIzVdIFtjIzQsZjQsZyM0XSBbZCM0LGc0LGEjNF0gW2cjNCxjNSxkIzVdPiIpCiAgLnMoInNxdWFyZSIpCiAgLmxwZigyMDAwKS5nYWluKDAuMikKICAucm9vbSgwLjQpCgovLyBib3VuY3kgYmFzcwokOiBub3RlKCI8ZyMyIGMjMyBkIzMgZyMyPiIpCiAgLnMoInNhd3Rvb3RoIikubHBmKDUwMCkuZ2FpbigwLjUpCiAgLmRlY2F5KDAuMDUpLnN1c3RhaW4oMC4zKQoKLy8gYnJpZ2h0IHNwYXJrbHkgbWVsb2R5CiQ6IG5vdGUoImcjNSB-IGQjNSB-IGM1IH4gZCM1IH4gZyM1IH4gYzUgfiBkIzUgfiB-IH4iKQogIC5zKCJ0cmlhbmdsZSIpLmdhaW4oMC4xOCkKICAuZGVsYXkoMC4zKS5kZWxheXRpbWUoMC4yKS5kZWxheWZlZWRiYWNrKDAuNCkKICAucm9vbSgwLjUpLmxwZig0MDAwKQoKLy8gcGVwcGllciBkcnVtcwokOiBzKCJiZCB-IGJkIH4gYmQgfiBiZCB-IikuZ2FpbigwLjYpCgokOiBzKCJ-IH4gfiB-IHNkIH4gfiB-IikuZ2FpbigwLjQ1KS5yb29tKDAuMikKCiQ6IHMoImhoKjE2IikuZ2FpbigwLjIpLmxwZig3MDAwKQ" class="play-btn" target="_blank">
+        <span class="play-icon">▶</span> Play in Strudel
       </a>
     </div>
 
     <footer>
       <p>
-        Built with <a href="https://strudel.cc" target="_blank">Strudel</a> &middot;
-        <a href="https://github.com/tyler-james-bridges/pulse" target="_blank">Source</a>
+        Built with <a href="https://strudel.cc" target="_blank">Strudel</a> ·
+        <a href="https://github.com/tyler-james-bridges/pulse" target="_blank">View Source</a>
       </p>
     </footer>
   </div>
